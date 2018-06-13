@@ -9,13 +9,24 @@ import android.support.design.widget.FloatingActionButton
 import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.widget.Toast
+import com.forgettingwords.jeff.forgettingwords.dao.WordDao
+import com.forgettingwords.jeff.forgettingwords.db.DatabaseHelper
 
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+
+    private lateinit var dbHelper: DatabaseHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //init db
+        dbHelper = DatabaseHelper(this)
+
+
 
         val newWord = findViewById(R.id.newWord) as FloatingActionButton
 
@@ -47,5 +58,7 @@ class MainActivity : AppCompatActivity() {
         // start your next activity
         startActivity(intent)
     }
-
+    override fun onDestroy() {
+        super.onDestroy()
+    }
 }
