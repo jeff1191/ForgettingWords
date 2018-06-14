@@ -1,9 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/List_row_padding">
-    <TextView android:id="@+id/label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-</RelativeLayout>
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center">
+
+    <!--  listrow  -->
+    <TextView
+        android:id="@+id/nameListRow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:gravity="left"
+        android:paddingLeft="10dp" />
+
+    <TextView
+        android:id="@+id/meaningListRow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:gravity="left"
+        android:paddingLeft="10dp" />
+
+
+    <ImageButton
+        android:id="@+id/deleteElemListRow"
+        android:layout_width="15dp"
+        android:layout_weight="1"
+        android:layout_height="50dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_toRightOf="@+id/tarea"
+        android:gravity="right"
+        android:scaleType="fitXY"
+        android:src="@drawable/sign_delete_icon"  />
+
+</LinearLayout>

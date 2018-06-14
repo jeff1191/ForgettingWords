@@ -2,9 +2,6 @@ package com.forgettingwords.jeff.forgettingwords.db
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import com.forgettingwords.jeff.forgettingwords.App
-import com.forgettingwords.jeff.forgettingwords.db.DatabaseHelper.Companion.DBNAME
-import com.forgettingwords.jeff.forgettingwords.db.DatabaseHelper.Companion.DBVERSION
 import com.forgettingwords.jeff.forgettingwords.model.WordMeaning
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper
 import com.j256.ormlite.dao.Dao
@@ -35,22 +32,24 @@ class DatabaseHelper : OrmLiteSqliteOpenHelper {
         return dao.createOrUpdate(obj)
     }
 
-    fun getAll(clazz: Class<*>): List<*> {
-        val dao = getDao(clazz)
-        return dao.queryForAll()
+    fun getAll(): List<WordMeaning> {
+        val dao = getDao(WordMeaning::class.java)
+        val ret = dao.queryBuilder().selectColumns("id","name", "meaning", "right_answers", "error_answers", "percentage").orderBy("percentage", false)
+
+        return ret.query()
     }
 
-    fun getStudentById(aId: Int): WordMeaning? {
+    fun getWordById(aId: Int): WordMeaning? {
         val studentDao = getRuntimeExceptionDao(WordMeaning::class.java)
         val queryBuilder = studentDao.queryBuilder()
         queryBuilder.where().eq("id", aId)
-        val students = queryBuilder.query()
-        return if (students.isEmpty()) null else students[0]
+        val words = queryBuilder.query()
+        return if (words.isEmpty()) null else words[0]
     }
 
     fun deleteById(aId: Int): Int {
-        val studentDao = getRuntimeExceptionDao(WordMeaning::class.java)
-        val deleteBuilder = studentDao.deleteBuilder()
+        val worDao = getRuntimeExceptionDao(WordMeaning::class.java)
+        val deleteBuilder = worDao.deleteBuilder()
         deleteBuilder.where().eq("id", aId)
         return deleteBuilder.delete()
     }

@@ -13,5 +13,14 @@ data class WordMeaning(
     var name: String = "",
 
     @DatabaseField(columnName = "meaning")
-    var meaning: String = ""
+    var meaning: String = "",
+
+    @DatabaseField(columnName = "right_answers")
+    var rightAnswers: Int = 0,
+
+    @DatabaseField(columnName = "error_answers")
+    var errorAnswers: Int = 0,
+
+    @DatabaseField(columnName = "percentage")
+    var percentage: Double = 0.0
 )

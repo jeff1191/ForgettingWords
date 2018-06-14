@@ -6,22 +6,31 @@ import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.widget.EditText
 import android.widget.Toast
+import com.forgettingwords.jeff.forgettingwords.db.DatabaseHelper
+import com.forgettingwords.jeff.forgettingwords.model.WordMeaning
 
 class NewWordActivity: Activity() {
+
+    private lateinit var dbHelper: DatabaseHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_newword)
 
+        //init db
+        dbHelper = DatabaseHelper(this)
 
-        val newWord = findViewById(R.id.saveButtonNewWord) as FloatingActionButton
+        val newWord = findViewById<FloatingActionButton>(R.id.saveButtonNewWord)
 
         newWord.setOnClickListener{view ->
 
-            val newWordText = findViewById(R.id.newWordText) as EditText
-            val newWordMeaning = findViewById(R.id.newWordMeaning) as EditText
+            val newWordText = findViewById<EditText>(R.id.newWordText)
+            val newWordMeaning = findViewById<EditText>(R.id.newWordMeaning)
 
-            Toast.makeText(applicationContext, "${newWordText.text} Saved", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, "New Word(${newWordText.text.toString()}) Saved", Toast.LENGTH_LONG).show()
+
+            dbHelper.createOrUpdate(WordMeaning( name = newWordText.text.toString(), meaning = newWordMeaning.text.toString(), rightAnswers = 0, errorAnswers = 0))
+
             newWordText.setText("")
             newWordMeaning.setText("")
         }
@@ -32,4 +41,9 @@ class NewWordActivity: Activity() {
             finish();
         }
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        dbHelper.connectionSource.close()
+    }
+
 }

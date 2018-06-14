@@ -6,37 +6,46 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.BaseAdapter
-import android.widget.ListView
-import android.widget.TextView
+import android.widget.*
+import com.forgettingwords.jeff.forgettingwords.db.DatabaseHelper
+import com.forgettingwords.jeff.forgettingwords.model.WordMeaning
+import android.R.string.cancel
+import android.app.AlertDialog
+import android.content.DialogInterface
 
 
 class ListActivity : Activity() {
-//    var lista: ArrayList<String>? = null
-    var adaptor: ArrayAdapter<String>? = null
+
+    private lateinit var dbHelper: DatabaseHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
+        //init db
+        dbHelper = DatabaseHelper(this)
+
         val lv = findViewById(R.id.sampleListView) as ListView
-        lv.adapter = ListExampleAdapter(this)
+        lv.adapter = ListExampleAdapter(this,dbHelper)
     }
 
-    private class ListExampleAdapter(context: Context) : BaseAdapter() {
-        internal var sList = arrayOf("One", "Two", "Three", "Four", "Five", "Six", "Seven",
-                "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen")
+    private class ListExampleAdapter(context: Context, dbHelperActivity: DatabaseHelper) : BaseAdapter() {
+
+        internal var dbHelper = dbHelperActivity
+        internal var sList : List<WordMeaning> = dbHelper.getAll()
+
         private val mInflator: LayoutInflater
 
         init {
             this.mInflator = LayoutInflater.from(context)
+
         }
 
         override fun getCount(): Int {
+
             return sList.size
         }
 
-        override fun getItem(position: Int): Any {
+        override fun getItem(position: Int): WordMeaning {
             return sList[position]
         }
 
@@ -56,16 +65,42 @@ class ListActivity : Activity() {
                 vh = view.tag as ListRowHolder
             }
 
-            vh.label.text = sList[position]
+            vh.name.text = sList[position].name + "("+ sList[position].percentage+"%)"
+            vh.meaning.text = sList[position].meaning
+
+            vh.image.setOnClickListener { view ->
+
+                val alertDialog = AlertDialog.Builder(view.getContext() as Activity)
+                alertDialog.setMessage("Are you sure you want to delete -> ${sList[position].name}?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, id ->
+                            dbHelper.deleteById(sList[position].id!!)
+                            sList = dbHelper.getAll()
+                            notifyDataSetChanged()
+                        })
+                        .setNegativeButton("No", DialogInterface.OnClickListener { dialog, id -> dialog.cancel() })
+                val alert = alertDialog.create()
+                alert.show()
+            }
+
             return view
         }
     }
 
     private class ListRowHolder(row: View?) {
-        public val label: TextView
+        val name: TextView
+        val meaning: TextView
+        val image: ImageButton
 
         init {
-            this.label = row?.findViewById(R.id.label) as TextView
+            this.name = row?.findViewById(R.id.nameListRow) as TextView
+            this.meaning = row?.findViewById(R.id.meaningListRow) as TextView
+            this.image = row?.findViewById(R.id.deleteElemListRow) as ImageButton
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        dbHelper.connectionSource.close()
     }
 }
