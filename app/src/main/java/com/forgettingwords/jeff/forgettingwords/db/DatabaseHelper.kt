@@ -38,7 +38,18 @@ class DatabaseHelper : OrmLiteSqliteOpenHelper {
 
         return ret.query()
     }
-
+    fun getPlayWords(): List<WordMeaning> {
+        val dao = getDao(WordMeaning::class.java)
+        val ret = dao.queryBuilder().selectColumns("id","name", "meaning", "right_answers", "error_answers", "percentage")
+              .orderBy("percentage", false).limit(10)
+        return ret.query()
+    }
+    fun totalCount(): Long {
+        val dao = getDao(WordMeaning::class.java)
+        val ret = dao.queryBuilder().selectColumns("id","name", "meaning", "right_answers", "error_answers", "percentage")
+                .countOf()
+        return ret
+    }
     fun getWordById(aId: Int): WordMeaning? {
         val studentDao = getRuntimeExceptionDao(WordMeaning::class.java)
         val queryBuilder = studentDao.queryBuilder()
