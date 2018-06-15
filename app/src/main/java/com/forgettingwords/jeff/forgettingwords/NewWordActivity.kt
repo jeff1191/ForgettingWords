@@ -27,9 +27,9 @@ class NewWordActivity: Activity() {
             val newWordText = findViewById<EditText>(R.id.newWordText)
             val newWordMeaning = findViewById<EditText>(R.id.newWordMeaning)
 
-            Toast.makeText(applicationContext, "New Word(${newWordText.text.toString()}) Saved", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, "${newWordText.text.toString()} saved  : )", Toast.LENGTH_LONG).show()
 
-            dbHelper.createOrUpdate(WordMeaning( name = newWordText.text.toString(), meaning = newWordMeaning.text.toString(), rightAnswers = 0, errorAnswers = 0))
+            dbHelper.createOrUpdate(WordMeaning( name = newWordText.text.toString(), meaning = newWordMeaning.text.toString()))
 
             newWordText.setText("")
             newWordMeaning.setText("")

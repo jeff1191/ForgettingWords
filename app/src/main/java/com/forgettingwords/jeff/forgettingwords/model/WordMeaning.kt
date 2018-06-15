@@ -16,11 +16,11 @@ data class WordMeaning(
     var meaning: String = "",
 
     @DatabaseField(columnName = "right_answers")
-    var rightAnswers: Int = 0,
+    var rightAnswers: Int = 5,
 
     @DatabaseField(columnName = "error_answers")
-    var errorAnswers: Int = 0,
+    var errorAnswers: Int = 5,
 
     @DatabaseField(columnName = "percentage")
-    var percentage: Double = 0.0
+    var percentage: Double = (rightAnswers * 100.0) / (rightAnswers + errorAnswers)
 )
