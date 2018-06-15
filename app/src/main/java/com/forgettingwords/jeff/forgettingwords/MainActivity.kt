@@ -7,6 +7,7 @@ import android.view.View
 import android.support.design.widget.FloatingActionButton
 import android.widget.Toast
 import com.forgettingwords.jeff.forgettingwords.db.DatabaseHelper
+import com.forgettingwords.jeff.forgettingwords.state.WordStateSt
 
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -37,6 +38,7 @@ class MainActivity : AppCompatActivity() {
     }
     fun play(view : View){
         val intent = Intent(this, PlayActivity::class.java)
+        WordStateSt.init(dbHelper.getPlayWords())
         startActivity(intent)
     }
     fun seeList(view : View){

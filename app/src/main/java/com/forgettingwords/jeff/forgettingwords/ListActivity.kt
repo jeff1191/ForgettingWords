@@ -12,6 +12,10 @@ import com.forgettingwords.jeff.forgettingwords.model.WordMeaning
 import android.R.string.cancel
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.graphics.Color
+import android.text.style.UnderlineSpan
+import android.text.SpannableString
+import android.text.style.BackgroundColorSpan
 
 
 class ListActivity : Activity() {
@@ -24,7 +28,7 @@ class ListActivity : Activity() {
         //init db
         dbHelper = DatabaseHelper(this)
 
-        val lv = findViewById(R.id.sampleListView) as ListView
+        val lv = findViewById<ListView>(R.id.sampleListView)
         lv.adapter = ListExampleAdapter(this,dbHelper)
     }
 
@@ -65,8 +69,24 @@ class ListActivity : Activity() {
                 vh = view.tag as ListRowHolder
             }
 
-            vh.name.text = sList[position].name + "("+ sList[position].percentage+"%)"
+            vh.name.text = sList[position].name + "("+ "%.2f".format(sList[position].percentage)+"%)"
             vh.meaning.text = sList[position].meaning
+
+
+
+            when (sList[position].percentage.toInt()) {
+                in 0..40  ->{
+                    val str = SpannableString(vh.name.text)
+                    str.setSpan(BackgroundColorSpan(Color.YELLOW), 0, vh.name.text.length, 0)
+                    vh.name.setText(str)
+                }
+                in 90..100  ->{
+
+                    vh.name.setTextColor(Color.GREEN)
+                }
+
+            }
+
 
             vh.image.setOnClickListener { view ->
 

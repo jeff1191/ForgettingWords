@@ -34,14 +34,14 @@ class DatabaseHelper : OrmLiteSqliteOpenHelper {
 
     fun getAll(): List<WordMeaning> {
         val dao = getDao(WordMeaning::class.java)
-        val ret = dao.queryBuilder().selectColumns("id","name", "meaning", "right_answers", "error_answers", "percentage").orderBy("percentage", false)
+        val ret = dao.queryBuilder().selectColumns("id","name", "meaning", "right_answers", "error_answers", "percentage").orderBy("name", true)
 
         return ret.query()
     }
     fun getPlayWords(): List<WordMeaning> {
         val dao = getDao(WordMeaning::class.java)
         val ret = dao.queryBuilder().selectColumns("id","name", "meaning", "right_answers", "error_answers", "percentage")
-              .orderBy("percentage", false).limit(10)
+              .orderBy("percentage", true).limit(10)
         return ret.query()
     }
     fun totalCount(): Long {
