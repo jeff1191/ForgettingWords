@@ -110,12 +110,12 @@ class ListActivity : Activity() {
     private class ListRowHolder(row: View?) {
         val name: TextView
         val meaning: TextView
-        val image: ImageButton
+        val image: ImageView
 
         init {
             this.name = row?.findViewById(R.id.nameListRow) as TextView
             this.meaning = row?.findViewById(R.id.meaningListRow) as TextView
-            this.image = row?.findViewById(R.id.deleteElemListRow) as ImageButton
+            this.image = row?.findViewById(R.id.deleteElemListRow) as ImageView
         }
     }
 

@@ -20,21 +20,24 @@ class NewWordActivity: Activity() {
         //init db
         dbHelper = DatabaseHelper(this)
 
-        val newWord = findViewById<FloatingActionButton>(R.id.saveButtonNewWord)
+        val newWord = findViewById(R.id.saveButtonNewWord) as FloatingActionButton
+        val returnButton= findViewById(R.id.returnButtonNewWord) as FloatingActionButton
+        val newWordText = findViewById<EditText>(R.id.newWordText)
+        val newWordMeaning = findViewById<EditText>(R.id.newWordMeaning)
 
         newWord.setOnClickListener{view ->
 
-            val newWordText = findViewById<EditText>(R.id.newWordText)
-            val newWordMeaning = findViewById<EditText>(R.id.newWordMeaning)
+            if(newWordText.text.isEmpty() || newWordMeaning.text.isEmpty())
+                Toast.makeText(applicationContext, "Word or Meaning Empty  : (", Toast.LENGTH_LONG).show()
+            else{
+                Toast.makeText(applicationContext, "${newWordText.text.toString()} saved  : )", Toast.LENGTH_LONG).show()
 
-            Toast.makeText(applicationContext, "${newWordText.text.toString()} saved  : )", Toast.LENGTH_LONG).show()
+                dbHelper.createOrUpdate(WordMeaning( name = newWordText.text.toString(), meaning = newWordMeaning.text.toString()))
 
-            dbHelper.createOrUpdate(WordMeaning( name = newWordText.text.toString(), meaning = newWordMeaning.text.toString()))
-
-            newWordText.setText("")
-            newWordMeaning.setText("")
+                newWordText.setText("")
+                newWordMeaning.setText("")
+            }
         }
-        val returnButton= findViewById(R.id.returnButtonNewWord) as FloatingActionButton
 
         returnButton.setOnClickListener{view ->
 

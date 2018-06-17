@@ -41,23 +41,10 @@ class DatabaseHelper : OrmLiteSqliteOpenHelper {
     fun getPlayWords(): List<WordMeaning> {
         val dao = getDao(WordMeaning::class.java)
         val ret = dao.queryBuilder().selectColumns("id","name", "meaning", "right_answers", "error_answers", "percentage")
-              .orderBy("percentage", true).limit(10)
+                .orderByRaw("RANDOM(), percentage asc").limit(10)
+
         return ret.query()
     }
-    fun totalCount(): Long {
-        val dao = getDao(WordMeaning::class.java)
-        val ret = dao.queryBuilder().selectColumns("id","name", "meaning", "right_answers", "error_answers", "percentage")
-                .countOf()
-        return ret
-    }
-    fun getWordById(aId: Int): WordMeaning? {
-        val studentDao = getRuntimeExceptionDao(WordMeaning::class.java)
-        val queryBuilder = studentDao.queryBuilder()
-        queryBuilder.where().eq("id", aId)
-        val words = queryBuilder.query()
-        return if (words.isEmpty()) null else words[0]
-    }
-
     fun deleteById(aId: Int): Int {
         val worDao = getRuntimeExceptionDao(WordMeaning::class.java)
         val deleteBuilder = worDao.deleteBuilder()

@@ -1,69 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/newWordText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="102dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text=""
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="132dp" />
+    <TextView
+        android:id="@+id/titleAddWord"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="30dp"
+        android:layout_weight="1"
+        android:text="NEW WORD"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:gravity="center"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/labelName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/newWordText"
-        android:layout_marginTop="68dp"
-        android:text="Word: " />
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_weight="0.5"
+        android:text="Word(Foreign language): " />
+
+    <EditText
+        android:id="@+id/newWordText"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:inputType="textPersonName"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="30dp"
+        android:layout_weight="1"
+        android:text="" />
+    <TextView
+        android:id="@+id/meaningLabel"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_weight="0.5"
+        android:text="Meaning(Your language):" />
 
     <EditText
         android:id="@+id/newWordMeaning"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="218dp"
-        android:ems="10"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="30dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:inputType="textPersonName"
         android:text="" />
 
-    <TextView
-        android:id="@+id/meaningLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/newWordText"
-        android:layout_marginTop="182dp"
-        android:text="Meaning(In your language):" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:layout_margin="30dp"
+        android:orientation="horizontal">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/returnButtonNewWord"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="end|bottom"
-        android:layout_marginBottom="195dp"
-        android:layout_marginLeft="115dp"
-        android:src="@drawable/ic_keyboard_return_white_24dp"
-        android:layout_marginRight="92dp" />
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/returnButtonNewWord"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="30dp"
+            android:layout_weight="5"
+            android:src="@drawable/ic_keyboard_return_white_24dp"/>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/saveButtonNewWord"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/returnButtonNewWord"
-        android:layout_gravity="bottom"
-        android:src="@drawable/ic_content_save_all_white_24dp"
-        android:layout_marginLeft="220dp" />
-</RelativeLayout>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/saveButtonNewWord"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_weight="5"
+            android:src="@drawable/ic_content_save_all_white_24dp" />
+    </LinearLayout>
+
+</LinearLayout>
