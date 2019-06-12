@@ -1,9 +1,10 @@
 package com.forgettingwords.jeff.forgettingwords.service
 
+import com.forgettingwords.jeff.forgettingwords.model.DataModel
 import com.forgettingwords.jeff.forgettingwords.model.UrbanWord
 import org.jsoup.Jsoup
 
-class UrbanService (var url: String){
+class UrbanService (var url: String): IService{
     var validNames: List<String> = object : ArrayList<String>() {
         init {
             add("def-header")
@@ -12,10 +13,9 @@ class UrbanService (var url: String){
         }
     }
 
-    fun onCreate() {
+    override fun onCreate(): List<DataModel> {
         val doc = Jsoup.connect(url).get()
-        val list : MutableList<UrbanWord> = ArrayList<UrbanWord>()
-
+        val list : MutableList<UrbanWord> = ArrayList()
         val info = doc.select("div#content")
 
         for (child in info[0].childNodes()) {
@@ -25,7 +25,6 @@ class UrbanService (var url: String){
                     val classDivName = contentChild.attributes().get("class")
 
                     if (validNames.contains(classDivName)) {
-
 
                         var toPrint = Jsoup.parse(contentChild.outerHtml()).text()
 
@@ -52,10 +51,7 @@ class UrbanService (var url: String){
 
         }
 
-        list.forEach{
-            x -> println(x)
-        }
-
+        return list
     }
 
 

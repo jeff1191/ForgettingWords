@@ -333,7 +333,7 @@ Sign out: Sign one’s name as an indication that one is leaving some location
 Sign up: Add a name to the list of people who are participating in something
 Sign up: Add one’s own name to the list of people who are participating in something
 Sign up: Agree to purchase some good or service
-Sing along: Sing some music while someone else is singing
+Sign along: Sing some music while someone else is singing
 Sink in: Become clear in one’s mind
 Sit back: Recline while still in a seated position, with one’s back on the frame of the seat
 Sit down: Assume a low or sunken position

@@ -1,6 +1,9 @@
 package com.forgettingwords.jeff.forgettingwords
 
+import com.forgettingwords.jeff.forgettingwords.model.DataModel
+import com.forgettingwords.jeff.forgettingwords.service.IrregularVerbsService
 import com.forgettingwords.jeff.forgettingwords.service.PhrasalVerbService
+import com.forgettingwords.jeff.forgettingwords.service.ServiceManager
 import com.forgettingwords.jeff.forgettingwords.service.UrbanService
 import org.junit.Test
 
@@ -12,19 +15,23 @@ import org.junit.Assert.*
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 class ExampleUnitTest {
-    @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
-    }
 
     @Test
     fun testPhrasalVerbService() {
-       PhrasalVerbService("/home/jeff/StudioProjects/ForgettingWords/app/sampledata/firstWord.txt").onCreate("firstWord")
-       PhrasalVerbService("/home/jeff/StudioProjects/ForgettingWords/app/sampledata/startWith.txt").onCreate("startWith")
-       PhrasalVerbService("/home/jeff/StudioProjects/ForgettingWords/app/sampledata/individualCategories.txt").onCreate("individualCategories")
+        printList(  ServiceManager.getServiceList(ServiceManager.PHRASAL_VERB_INS))
+
     }
     @Test
     fun testUrbanService() {
-       UrbanService("https://www.urbandictionary.com/random.php").onCreate()
+        printList(  ServiceManager.getServiceList(ServiceManager.URBAN_VERB_INS))
+
+    }
+    @Test
+    fun testIrregularService() {
+        printList(  ServiceManager.getServiceList(ServiceManager.IRREGULAR_VERB_INS))
+    }
+
+    fun printList(dataList: List<DataModel>){
+        dataList.forEach { x -> println(x) }
     }
 }
