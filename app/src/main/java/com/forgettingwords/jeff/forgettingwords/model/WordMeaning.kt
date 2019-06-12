@@ -19,8 +19,8 @@ data class WordMeaning(
     var rightAnswers: Int = 5,
 
     @DatabaseField(columnName = "error_answers")
-    var errorAnswers: Int = 5,
+    var errorAnswers: Int = 10,
 
     @DatabaseField(columnName = "percentage")
-    var percentage: Double = (rightAnswers * 100.0) / (rightAnswers + errorAnswers)
+    var percentage: Double = (rightAnswers * 100.0) / ( errorAnswers)
 )

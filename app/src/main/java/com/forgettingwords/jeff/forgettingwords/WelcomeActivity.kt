@@ -1,9 +1,7 @@
 package com.forgettingwords.jeff.forgettingwords
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
-import com.forgettingwords.jeff.forgettingwords.R
 import android.content.Intent
 import java.util.*
 
