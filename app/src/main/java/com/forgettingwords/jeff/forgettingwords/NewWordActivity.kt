@@ -31,7 +31,6 @@ class NewWordActivity: Activity() {
                 Toast.makeText(applicationContext, "Word or Meaning Empty  : (", Toast.LENGTH_LONG).show()
             else{
                 Toast.makeText(applicationContext, "${newWordText.text.toString()} saved  : )", Toast.LENGTH_LONG).show()
-
                 dbHelper.createOrUpdate(WordMeaning( name = newWordText.text.toString(), meaning = newWordMeaning.text.toString()))
 
                 newWordText.setText("")
@@ -40,8 +39,7 @@ class NewWordActivity: Activity() {
         }
 
         returnButton.setOnClickListener{view ->
-
-            finish();
+            finish()
         }
     }
     override fun onDestroy() {

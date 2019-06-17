@@ -25,6 +25,10 @@
         <activity android:name=".MainActivity" android:screenOrientation="portrait"/>
         <activity android:name=".PlayActivity" android:screenOrientation="portrait"/>
         <activity android:name=".NewWordActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ManagerActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".UrbanActivity" android:screenOrientation="portrait"/>
+
     </application>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
 </manifest>

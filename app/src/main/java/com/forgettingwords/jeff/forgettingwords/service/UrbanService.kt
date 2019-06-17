@@ -12,9 +12,10 @@ class UrbanService (var url: String): IService{
             add("example")
         }
     }
+    val doc = Jsoup.connect(url).get()
+
 
     override fun onCreate(): List<DataModel> {
-        val doc = Jsoup.connect(url).get()
         val list : MutableList<UrbanWord> = ArrayList()
         val info = doc.select("div#content")
 

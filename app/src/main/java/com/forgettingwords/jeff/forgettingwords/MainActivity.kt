@@ -21,19 +21,30 @@ class MainActivity : Activity() {
         //init db
         dbHelper = DatabaseHelper(this)
     }
-    fun play(view : View){
+    fun playWordMeaning(view : View){
         val intent = Intent(this, PlayActivity::class.java)
         WordStateSt.init(dbHelper.getPlayWords())
         startActivity(intent)
     }
-    fun seeList(view : View){
-        val intent = Intent(this, ListActivity::class.java)
+    fun playIrregularGame(view : View){
+        val intent = Intent(this, PlayActivity::class.java)
+        WordStateSt.init(dbHelper.getPlayWords())
         startActivity(intent)
     }
-    fun addNewWord(view : View){
-        val intent = Intent(this, NewWordActivity::class.java)
-        // To pass any data to next activity
-//            intent.putExtra("keyIdentifier", "anyValue")
+    fun playPhrasalVerb(view : View){
+        val intent = Intent(this, PlayActivity::class.java)
+        WordStateSt.init(dbHelper.getPlayWords())
         startActivity(intent)
     }
+    fun showUrbanWords(view : View){
+        val intent = Intent(this, UrbanActivity::class.java)
+        WordStateSt.init(dbHelper.getPlayWords())
+        startActivity(intent)
+    }
+    fun showManager(view : View){
+        val intent = Intent(this, ManagerActivity::class.java)
+        WordStateSt.init(dbHelper.getPlayWords())
+        startActivity(intent)
+    }
+
 }

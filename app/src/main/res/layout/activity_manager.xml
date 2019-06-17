@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ManagerActivity"
+    android:orientation="vertical"
+    android:background="@drawable/languages">
+
+
+    <Button
+        android:id="@+id/newWord"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="30dp"
+        android:layout_weight="3"
+        android:onClick="addNewWordMeaning"
+        android:text="ADD NEW WORD / VERB"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/newIrregularVerb"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="30dp"
+        android:layout_weight="3"
+        android:onClick="addNewIrregularVerb"
+        android:text="ADD NEW IRREGULAR VERB"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/newPhrasalVerb"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="30dp"
+        android:layout_weight="3"
+        android:onClick="addNewPhrasalVerb"
+        android:text="ADD NEW PHRASAL VERB"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/playBtnId"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="30dp"
+        android:layout_weight="3"
+        android:textStyle="bold"
+        android:onClick="showList"
+        android:text="Word List" />
+
+
+</LinearLayout>

@@ -13,32 +13,77 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="30dp"
-        android:layout_weight="3"
-        android:textStyle="bold"
-        android:onClick="play"
-        android:text="PLAY" />
+        android:layout_weight="2"
+        android:onClick="playWordMeaning"
+        android:text="WORD-MEANING GAME"
+        android:textStyle="bold" />
+
 
     <Button
-        android:id="@+id/newWord"
+        android:id="@+id/playIrregularVerbId"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="30dp"
-        android:textStyle="bold"
-        android:onClick="addNewWord"
-        android:layout_weight="3"
-        android:text="Add new Word" />
+        android:layout_weight="2"
+        android:onClick="playIrregularGame"
+        android:text="IRREGULAR VERBS GAME"
+        android:textStyle="bold" />
 
     <Button
-        android:id="@+id/playBtnId"
+        android:id="@+id/playPhrasalVerbId"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="30dp"
-        android:layout_weight="3"
-        android:textStyle="bold"
-        android:onClick="seeList"
-        android:text="Word List" />
+        android:layout_weight="2"
+        android:onClick="playPhrasalVerb"
+        android:text="PHRASAL VERBS GAME"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/urbanWordsId"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="30dp"
+        android:layout_weight="2"
+        android:onClick="showUrbanWords"
+        android:text="URBAN WORDS OF THE DAY"
+        android:textStyle="bold" />
+    <Button
+        android:id="@+id/wordsManagerId"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="30dp"
+        android:layout_weight="2"
+        android:onClick="showManager"
+        android:text="MANAGE WORDs / VERBs"
+        android:textStyle="bold" />
+
+
+    <!--<Button-->
+        <!--android:id="@+id/newWord"-->
+        <!--style="@style/Widget.AppCompat.Button.Colored"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_margin="30dp"-->
+        <!--android:layout_weight="3"-->
+        <!--android:onClick="addNewWord"-->
+        <!--android:text="ADD NEW WORD / VERB"-->
+        <!--android:textStyle="bold" />-->
+
+    <!--<Button-->
+        <!--android:id="@+id/playBtnId"-->
+        <!--style="@style/Widget.AppCompat.Button.Colored"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_margin="30dp"-->
+        <!--android:layout_weight="3"-->
+        <!--android:textStyle="bold"-->
+        <!--android:onClick="showList"-->
+        <!--android:text="Word List" />-->
 
 
 </LinearLayout>
