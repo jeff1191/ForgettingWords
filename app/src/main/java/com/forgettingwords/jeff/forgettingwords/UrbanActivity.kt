@@ -1,29 +1,36 @@
 package com.forgettingwords.jeff.forgettingwords
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.os.AsyncTask
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.AppCompatAutoCompleteTextView
+import android.view.View
 import android.widget.TextView
 import com.forgettingwords.jeff.forgettingwords.db.DatabaseHelper
 import com.forgettingwords.jeff.forgettingwords.model.UrbanWord
 import com.forgettingwords.jeff.forgettingwords.service.ServiceManager
 import android.view.WindowManager
+import android.widget.Toast
 import xyz.klinker.android.floating_tutorial.FloatingTutorialActivity
 import xyz.klinker.android.floating_tutorial.TutorialPage
 
 
-class UrbanActivity: FloatingTutorialActivity() {
+class UrbanActivity: AppCompatActivity() {
     //https://blog.klinkerapps.com/floating-tutorial-activity/
-
-    override fun getPages(): List<TutorialPage> {
-        return listOf(
-                object : TutorialPage(this@UrbanActivity) {
-                    override fun initPage() {
-                        setContentView(R.layout.activity_urban)
-                    }
-                })
-
-    }
+//
+//    override fun getPages() = listOf<TutorialPage>(
+//            object : TutorialPage(this@UrbanActivity) {
+//                override fun initPage() {
+//                    setContentView(R.layout.activity_urban)
+//                    setNextButtonText(R.string.ok)
+//                }
+//
+//                override fun animateLayout() {
+//                    AnimationHelper.quickViewReveal(findViewById<View>(R.id.bottom_text), 300)
+//                }
+//            })
 
     private lateinit var dbHelper: DatabaseHelper
     private var urbanList: List<UrbanWord> = emptyList()
@@ -48,6 +55,7 @@ class UrbanActivity: FloatingTutorialActivity() {
             })
         }.execute()
 
+
     }
 
     fun setWindowParams() {
@@ -64,3 +72,26 @@ class UrbanActivity: FloatingTutorialActivity() {
         }
     }
 }
+
+//object AnimationHelper {
+//    fun animateGroup(vararg views: View) {
+//        var startTime = 300
+//
+//        for (v in views) {
+//            quickViewReveal(v, startTime.toLong())
+//            startTime += 75
+//        }
+//    }
+//
+//    fun quickViewReveal(view: View, delay: Long) {
+//        view.translationX = -1f * DensityConverter.toDp(view.context, 16)
+//        view.alpha = 0f
+//        view.visibility = View.VISIBLE
+//
+//        view.animate()
+//                .translationX(0f)
+//                .alpha(1f)
+//                .setStartDelay(delay)
+//                .start()
+//    }
+//}
